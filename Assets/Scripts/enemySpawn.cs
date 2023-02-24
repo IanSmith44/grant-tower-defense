@@ -16,6 +16,8 @@ public class enemySpawn : MonoBehaviour
     void Spawn()
     {
         recentEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
+        recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+        recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
     }
 
     // Update is called once per frame

@@ -5,6 +5,7 @@ using TMPro;
 
 public class healthMoney : MonoBehaviour
 {
+    [SerializeField] private roundManager roundManager;
     [SerializeField] private TextMeshProUGUI healthObject;
     [SerializeField] private TextMeshProUGUI moneyObject;
     public int health = 100;
@@ -22,6 +23,7 @@ public class healthMoney : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
+            roundManager.Die();
         }
         healthObject.text = "Health: " + health;
         moneyObject.SetText("Money: " + money);

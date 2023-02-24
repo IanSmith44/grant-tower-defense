@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
-    private GameObject gameManager;
-    [SerializeField] private healthMoney healthMoney;
-    [SerializeField] private roundManager roundManager;
+    public healthMoney healthMoney;
+    public roundManager roundManager;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private enum Direction
     {
@@ -20,9 +19,6 @@ public class move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameManager");
-        healthMoney = gameManager.GetComponent<healthMoney>();
-        roundManager = gameManager.GetComponent<roundManager>();
         /*rb = GetComponent<Rigidbody2D>();
         direction = Direction.Right;*/
     }
@@ -69,6 +65,7 @@ public class move : MonoBehaviour
         {
             Destroy(gameObject);
             healthMoney.health -= 1;
+            roundManager.EnemyDied();
         }
     }
 }
