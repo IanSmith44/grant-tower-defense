@@ -63,8 +63,23 @@ public class move : MonoBehaviour
         }
         if (collision.gameObject.tag == "End")
         {
+            if (this.tag == "Green")
+            {
+                healthMoney.health -= 1;
+            }
+            else if (this.tag == "Blue")
+            {
+                healthMoney.health -= 2;
+            }
+            else if (this.tag == "Red")
+            {
+                healthMoney.health -= 3;
+            }
+            else
+            {
+                Debug.Log("No valid enemy type selected");
+            }
             Destroy(gameObject);
-            healthMoney.health -= 1;
             roundManager.EnemyDied();
         }
     }

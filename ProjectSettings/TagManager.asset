@@ -10,15 +10,16 @@ TagManager:
   - Up
   - Down
   - End
+  - Blue
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Grant
   - Water
   - UI
-  - 
-  - 
+  - Path
+  - Tower
   - 
   - 
   - 
