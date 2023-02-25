@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class enemySpawn : MonoBehaviour
 {
-    public enum enemy { green, blue, red}
+    private bool spawning = false;
+    public enum enemy { green, blue, red, none}
     public enemy enemyType;
     [SerializeField] private float spawnTime = 1f;
     [SerializeField] private float firstSpawnOffset = 0.2f;
@@ -19,26 +21,49 @@ public class enemySpawn : MonoBehaviour
     {
         spawnCountdown = spawnTime - firstSpawnOffset;
     }
+    public void R()
+    {
+        enemyType = enemy.red;
+    }
+    public void G()
+    {
+        enemyType = enemy.green;
+    }
+    public void B()
+    {
+        enemyType = enemy.blue;
+    }
+    public void N()
+    {
+        enemyType = enemy.none;
+    }
     void Spawn()
     {
-        if (enemyType == enemy.green)
+        if (spawning)
         {
-            recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+            if (enemyType == enemy.green)
+            {
+                recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+            }
+            else if (enemyType == enemy.blue)
+            {
+                recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
+            }
+            else if (enemyType == enemy.red)
+            {
+                recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
+            }
+            else
+            {
+                Debug.Log("No enemy was spawned");
+            }
+            recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+            recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
         }
-        else if (enemyType == enemy.blue)
-        {
-            recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-        }
-        else if (enemyType == enemy.red)
-        {
-            recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-        }
-        else
-        {
-            Debug.Log("No valid enemy type selected");
-        }
-        recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-        recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+    }
+    public void currentlySpawning()
+    {
+        spawning = true;
     }
 
     // Update is called once per frame

@@ -6,7 +6,10 @@ public class roundManager : MonoBehaviour
 {
     [SerializeField] private GameObject diePanel;
     [SerializeField] private int round = 1;
-    private int enemiesCount = 0;
+    [SerializeField] private int enemiesCount = 0;
+    private GameObject[] greenEnemies;
+    private GameObject[] redEnemies;
+    private GameObject[] blueEnemies;
     public GameObject[] enemiesList;
     void Start()
     {
@@ -28,7 +31,18 @@ public class roundManager : MonoBehaviour
 
     void Update()
     {
-        enemiesList = GameObject.FindGameObjectsWithTag("Green");
+        /*
+        var z = new int[x.Length + y.Length];
+        x.CopyTo(z, 0);
+        y.CopyTo(z, x.Length);
+        */
+        greenEnemies = GameObject.FindGameObjectsWithTag("Green");
+        redEnemies = GameObject.FindGameObjectsWithTag("Red");
+        blueEnemies = GameObject.FindGameObjectsWithTag("Blue");
+        enemiesList = new GameObject[greenEnemies.Length + redEnemies.Length + blueEnemies.Length];
+        greenEnemies.CopyTo(enemiesList, 0);
+        redEnemies.CopyTo(enemiesList, greenEnemies.Length);
+        blueEnemies.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length);
         enemiesCount = enemiesList.Length;
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Down
   - End
   - Blue
+  - Red
   layers:
   - Default
   - TransparentFX
