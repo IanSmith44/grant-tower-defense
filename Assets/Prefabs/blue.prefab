@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa201215c2dd52f49a1d49994452a3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   healthMoney: {fileID: 0}
   roundManager: {fileID: 0}
   rb: {fileID: 4637213130942343469}
@@ -141,7 +142,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

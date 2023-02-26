@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class roundManager : MonoBehaviour
 {
+    [SerializeField] public enemySpawn enemySpawn;
+    private bool checkNextFrame = false;
     [SerializeField] private GameObject diePanel;
-    [SerializeField] private int round = 1;
+    public int round = 1;
     [SerializeField] private int enemiesCount = 0;
     private GameObject[] greenEnemies;
     private GameObject[] redEnemies;
@@ -18,10 +20,10 @@ public class roundManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        if (enemiesCount == 0)
-        {
-            round++;
-        }
+        /*if (enemiesCount == 0)
+        {*/
+            checkNextFrame = true;
+        //}
     }
 
     public void Die()
@@ -44,5 +46,14 @@ public class roundManager : MonoBehaviour
         redEnemies.CopyTo(enemiesList, greenEnemies.Length);
         blueEnemies.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length);
         enemiesCount = enemiesList.Length;
+        if (checkNextFrame)
+        {
+            checkNextFrame = false;
+            if (enemiesCount == 0)
+            {
+                round++;
+                enemySpawn.roundOver = true;
+            }
+        }
     }
 }
