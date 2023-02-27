@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class tower : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer circleSprite;
     private Vector3 mousePosition;
     private bool placed = false;
     // Start is called before the first frame update
@@ -27,7 +28,12 @@ public class tower : MonoBehaviour
     {
         if (!placed)
         {
+            circleSprite.enabled = true;
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, 0f, 1f);
+        }
+        if (placed)
+        {
+            circleSprite.enabled = false;
         }
     }
 }

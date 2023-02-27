@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
+    private bool speedUp = false;
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private enum EnemyType
+    {
+        Green,
+        Blue,
+        Red
+    }
+    [SerializeField] private EnemyType enemyType;
     public int health = 100;
     public healthMoney healthMoney;
     public roundManager roundManager;
@@ -23,14 +32,17 @@ public class move : MonoBehaviour
         if (this.tag == "Green")
         {
             health = 100;
+            enemyType = EnemyType.Green;
         }
         else if (this.tag == "Blue")
         {
             health = 200;
+            enemyType = EnemyType.Blue;
         }
         else if (this.tag == "Red")
         {
             health = 400;
+            enemyType = EnemyType.Red;
         }
         else
         {
@@ -48,11 +60,13 @@ public class move : MonoBehaviour
         else if (this.tag == "Blue")
         {
             this.tag = "Green";
+            enemyType = EnemyType.Green;
             healthMoney.money += 25;
         }
         else if (this.tag == "Red")
         {
             this.tag = "Blue";
+            enemyType = EnemyType.Blue;
             healthMoney.money += 45;
         }
         else
@@ -66,19 +80,71 @@ public class move : MonoBehaviour
     {
         if (direction == Direction.Right)
         {
-            rb.velocity = new Vector2(1, 0);
+            if (speedUp)
+            {
+                rb.velocity = new Vector2(2, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector2(1, 0);
+            }
         }
         else if (direction == Direction.Left)
         {
-            rb.velocity = new Vector2(-1, 0);
+            if (speedUp)
+            {
+                rb.velocity = new Vector2(-2, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-1, 0);
+            }
         }
         else if (direction == Direction.Up)
         {
-            rb.velocity = new Vector2(0, 1);
+            if (speedUp)
+            {
+                rb.velocity = new Vector2(0, 2);
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, 1);
+            }
         }
         else if (direction == Direction.Down)
         {
-            rb.velocity = new Vector2(0, -1);
+            if (speedUp)
+            {
+                rb.velocity = new Vector2(0, -2);
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, -1);
+            }
+        }
+        if (enemyType == EnemyType.Green)
+        {
+            sr.color = Color.green;
+        }
+        else if (enemyType == EnemyType.Blue)
+        {
+            sr.color = Color.blue;
+        }
+        else if (enemyType == EnemyType.Red)
+        {
+            sr.color = Color.red;
+        }
+        else
+        {
+            Debug.Log("Enemy type not in move.cs update function");
+        }
+        if (transform.position.x > -6.5f && transform.position.y < -3 && transform.position.x < 2.5f && transform.position.y > -4)
+        {
+            speedUp = true;
+        }
+        else
+        {
+            speedUp = false;
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

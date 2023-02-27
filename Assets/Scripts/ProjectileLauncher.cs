@@ -33,6 +33,10 @@ public class ProjectileLauncher : MonoBehaviour
                     closestDistance = distance;
                     target = t.transform;
                 }
+                /*else if (distance > range)
+                {
+                    target = null;
+                }*/
             }
         }
 
@@ -41,11 +45,18 @@ public class ProjectileLauncher : MonoBehaviour
             // Calculate the angle to the target
             Vector3 targetDir = target.position - transform.position;
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
-
             // Instantiate the projectile and aim at the target
             projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right * projectileSpeed;
             projectile.GetComponent<Projectile>().target = target;
+        }
+    }
+    void Update ()
+    {
+        float targetDistance = Vector3.Distance(transform.position, target.position);
+        if (targetDistance > range && target != null)
+        {
+            target = null;
         }
     }
 }

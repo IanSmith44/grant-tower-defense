@@ -7,9 +7,12 @@ public class enemySpawn : MonoBehaviour
 {
     public bool roundOver = true;
     private string[] round1 = {"green", "green", "green"};
-    private string[] round2 = {"green", "green", "green", "green", "green", "green", "green", "green", "green", "green"};
-    private string[] round3 = {"blue", "green", "green", "green", "green", "green", "green", "green", "green", "green"};
-    private string[] round4 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
+    private string[] round2 = {"green", "green", "green", "none", "none", "green", "green", "green", "none", "none", "green", "green", "green"};
+    private string[] round3 = {"green", "green", "green", "green", "green", "green", "green", "green", "green", "green"};
+    private string[] round4 = {"blue", "green", "green", "green", "green", "green", "green", "green", "green", "green"};
+    private string[] round5 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
+    private string[] round6 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
+    private string[] round7 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;
@@ -21,14 +24,14 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private GameObject blue;
     [SerializeField] private GameObject red;
     private GameObject recentEnemy;
-    // Start is called before the first frame update
     void Start()
     {
         spawnCountdown = spawnTime - firstSpawnOffset;
     }
     void Spawn()
     {
-        //Debug.Log(roundManager.round);
+        //Logs what the current round is every time the Spawn function is called
+        Debug.Log(roundManager.round);
         if (spawning)
         {
             spawnCount += 1;
@@ -57,9 +60,13 @@ public class enemySpawn : MonoBehaviour
                     recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
                     recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
                 }
+                else if (round1[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
                 else
                 {
-                    Debug.Log("Enemy type is not configured in enemySpawn.cs");
+                    Debug.Log("Enemy type is not configured in enemySpawn.cs1");
                 }
             }
             else if (roundManager.round == 2)
@@ -87,9 +94,13 @@ public class enemySpawn : MonoBehaviour
                     recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
                     recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
                 }
+                else if (round2[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs");
+                    Debug.Log("enemy type is not configured in enemySpawn.cs2");
                 }
             }
             else if (roundManager.round == 3)
@@ -117,15 +128,156 @@ public class enemySpawn : MonoBehaviour
                     recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
                     recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
                 }
+                else if (round3[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs");
+                    Debug.Log("enemy type is not configured in enemySpawn.cs3");
+                }
+            }
+            else if (roundManager.round == 4)
+            {
+                if (spawnCount > round4.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else if (round4[spawnCount] == "green")
+                {
+                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round4[spawnCount] == "blue")
+                {
+                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round4[spawnCount] == "red")
+                {
+                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round4[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
+                else
+                {
+                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                }
+            }
+            else if (roundManager.round == 5)
+            {
+                if (spawnCount > round5.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else if (round5[spawnCount] == "green")
+                {
+                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round5[spawnCount] == "blue")
+                {
+                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round5[spawnCount] == "red")
+                {
+                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round5[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
+                else
+                {
+                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                }
+            }
+            else if (roundManager.round == 6)
+            {
+                if (spawnCount > round6.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else if (round6[spawnCount] == "green")
+                {
+                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round6[spawnCount] == "blue")
+                {
+                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round6[spawnCount] == "red")
+                {
+                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round6[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
+                else
+                {
+                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                }
+            }
+            else if (roundManager.round == 7)
+            {
+                if (spawnCount > round7.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else if (round7[spawnCount] == "green")
+                {
+                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round7[spawnCount] == "blue")
+                {
+                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round7[spawnCount] == "red")
+                {
+                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round7[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
+                else
+                {
+                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
                 }
             }
         }
     }
     public void currentlySpawning()
     {
+        //Checks if the round is over, if it is, then it sets spawning to true
         if (roundOver)
         {
             roundOver = false;
@@ -142,28 +294,11 @@ public class enemySpawn : MonoBehaviour
                 Time.timeScale = 1f;
             }
         }
-        /*
-        if (!spawning)
-        {
-            spawning = true;
-        }
-        else if (spawning)
-        {
-            if (Time.timeScale == 1f)
-            {
-                Time.timeScale = 2f;
-            }
-            else if (Time.timeScale == 2f)
-            {
-            Time.timeScale = 1f;
-            }
-        }
-        */
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Checks if the timer has run out, if it has, then it spawns an enemy and resets the time
         if (spawnCountdown <= 0)
         {
             Spawn();

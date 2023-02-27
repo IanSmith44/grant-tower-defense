@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Boundary : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Green" || collision.gameObject.tag == "Blue" || collision.gameObject.tag == "Red" || collision.gameObject.tag == "Projectile")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+}
