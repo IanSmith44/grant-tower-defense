@@ -8,11 +8,12 @@ public class enemySpawn : MonoBehaviour
     public bool roundOver = true;
     private string[] round1 = {"green", "green", "green"};
     private string[] round2 = {"green", "green", "green", "none", "none", "green", "green", "green", "none", "none", "green", "green", "green"};
-    private string[] round3 = {"green", "green", "green", "green", "green", "green", "green", "green", "green", "green"};
-    private string[] round4 = {"blue", "green", "green", "green", "green", "green", "green", "green", "green", "green"};
-    private string[] round5 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
+    private string[] round3 = {"blue", "green", "green", "green", "green", "green", "green"};
+    private string[] round4 = {"blue", "green", "blue", "green", "blue", "green", "blue", "green", "blue", "green", "blue", "green", "blue", "blue", "blue", "blue"};
+    private string[] round5 = {"red", "red", "red"};
     private string[] round6 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
-    private string[] round7 = {"blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
+    private string[] round7 = {"red", "red", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"};
+    private string[] round8 = {"red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red"};
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;

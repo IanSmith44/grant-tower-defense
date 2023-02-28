@@ -7,7 +7,7 @@ public class tower : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer circleSprite;
     private Vector3 mousePosition;
-    private bool placed = false;
+    public bool placed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +15,14 @@ public class tower : MonoBehaviour
     }
 
     public void Place(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            placed = true;
+        }
+    }
+
+    public void PlaceTouch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {

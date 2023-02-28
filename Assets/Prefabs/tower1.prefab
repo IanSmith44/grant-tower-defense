@@ -244,6 +244,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: aa662388-55b4-419c-a566-61dcca5aa8c3
     m_ActionName: Player/Place[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1255690830621168511}
+        m_TargetAssemblyTypeName: tower, Assembly-CSharp
+        m_MethodName: PlaceTouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0dd6764f-8cb5-4240-923f-f0bf3c2446f4
+    m_ActionName: Player/Place(Touch)
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -262,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleSprite: {fileID: 5358091754056253340}
+  placed: 0
 --- !u!114 &1505568969340215462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af170c70ab599e42af6f1da0c5a29a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 1255690830621168511}
   fireInterval: 1
   projectilePrefab: {fileID: 5742014354644851909, guid: c8e0c1bf8fbec1b4a9900443bb0e6e17, type: 3}
   targetTags:

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileLauncher : MonoBehaviour
 {
+    [SerializeField] private tower tower;
     [SerializeField] private float fireInterval = 1f;
     private GameObject projectile;
     [SerializeField] private GameObject projectilePrefab;
@@ -40,7 +41,7 @@ public class ProjectileLauncher : MonoBehaviour
             }
         }
 
-        if (target != null)
+        if (target != null && tower.placed == true)
         {
             // Calculate the angle to the target
             Vector3 targetDir = target.position - transform.position;
@@ -49,14 +50,16 @@ public class ProjectileLauncher : MonoBehaviour
             projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right * projectileSpeed;
             projectile.GetComponent<Projectile>().target = target;
+            target = null;
         }
     }
     void Update ()
     {
+        /*
         float targetDistance = Vector3.Distance(transform.position, target.position);
         if (targetDistance > range && target != null)
         {
             target = null;
-        }
+        }*/
     }
 }
