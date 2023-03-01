@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
+    private Transform target;
+    [SerializeField] private float range = 3f;
+    [SerializeField] private string[] targetTags;
     private bool speedUp = false;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private enum EnemyType
@@ -50,6 +53,25 @@ public class move : MonoBehaviour
         }
     }
 
+    void pow()
+    {
+        float closestDistance = Mathf.Infinity;
+        foreach (string tag in targetTags)
+        {
+            GameObject[] targets = GameObject.FindGameObjectsWithTag(tag);
+            GameObject[] useableTargets;
+            foreach (GameObject t in targets)
+            {
+                float distance = Vector3.Distance(transform.position, t.transform.position);
+                if (distance < closestDistance && distance <= range)
+                {
+                    closestDistance = distance;
+                    target = t.transform;
+                }
+            }
+        }
+    }
+
     void Die()
     {
         if (this.tag == "Green")
@@ -67,6 +89,7 @@ public class move : MonoBehaviour
         {
             this.tag = "Blue";
             enemyType = EnemyType.Blue;
+            pow();
             healthMoney.money += 45;
         }
         else
