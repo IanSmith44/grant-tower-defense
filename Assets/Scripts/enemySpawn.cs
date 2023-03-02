@@ -274,6 +274,40 @@ public class enemySpawn : MonoBehaviour
                     Debug.Log("enemy type is not configured in enemySpawn.cs4");
                 }
             }
+            else if (roundManager.round == 8)
+            {
+                if (spawnCount > round8.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else if (round8[spawnCount] == "green")
+                {
+                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round8[spawnCount] == "blue")
+                {
+                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round8[spawnCount] == "red")
+                {
+                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
+                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                }
+                else if (round8[spawnCount] == "none")
+                {
+                    Debug.Log("No enemy spawned");
+                }
+                else
+                {
+                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                }
+            }
         }
     }
     public void currentlySpawning()
