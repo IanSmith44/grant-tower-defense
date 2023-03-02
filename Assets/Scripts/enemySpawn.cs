@@ -24,6 +24,9 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private GameObject green;
     [SerializeField] private GameObject blue;
     [SerializeField] private GameObject red;
+    [SerializeField] private GameObject yellow;
+    [SerializeField] private GameObject orange;
+    [SerializeField] private GameObject pink;
     private GameObject recentEnemy;
     void Start()
     {
