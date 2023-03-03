@@ -62,7 +62,7 @@ public class move : MonoBehaviour
         }
         else if (this.tag == "Pink")
         {
-            health = "3200"
+            health = 3200;
             enemyType = EnemyType.Pink;
         }
         else
@@ -128,7 +128,7 @@ public class move : MonoBehaviour
         }
         else if (this.tag == "Pink")
         {
-            this.tag = "Orange"
+            this.tag = "Orange";
             enemyType = EnemyType.Orange;
             health = 1600;
             healthMoney.money += 80;
@@ -208,7 +208,7 @@ public class move : MonoBehaviour
         }
         else if (enemyType == EnemyType.Pink)
         {
-            sr.color = Color.pink;
+            sr.color = new Color(1f, 0.5f, 0.5f, 1f);
         }
         else
         {
