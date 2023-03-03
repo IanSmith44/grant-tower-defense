@@ -34,10 +34,6 @@ public class ProjectileLauncher : MonoBehaviour
                     closestDistance = distance;
                     target = t.transform;
                 }
-                /*else if (distance > range)
-                {
-                    target = null;
-                }*/
             }
         }
 
@@ -52,14 +48,5 @@ public class ProjectileLauncher : MonoBehaviour
             projectile.GetComponent<Projectile>().target = target;
             target = null;
         }
-    }
-    void Update ()
-    {
-        /*
-        float targetDistance = Vector3.Distance(transform.position, target.position);
-        if (targetDistance > range && target != null)
-        {
-            target = null;
-        }*/
     }
 }

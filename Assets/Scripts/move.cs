@@ -13,7 +13,10 @@ public class move : MonoBehaviour
     {
         Green,
         Blue,
-        Red
+        Red,
+        Yellow,
+        Orange,
+        Pink
     }
     [SerializeField] private EnemyType enemyType;
     public int health = 100;
@@ -46,6 +49,21 @@ public class move : MonoBehaviour
         {
             health = 400;
             enemyType = EnemyType.Red;
+        }
+        else if (this.tag == "Yellow")
+        {
+            health = 800;
+            enemyType = EnemyType.Yellow;
+        }
+        else if (this.tag == "Orange")
+        {
+            health = 1600;
+            enemyType = EnemyType.Orange;
+        }
+        else if (this.tag == "Pink")
+        {
+            health = "3200"
+            enemyType = EnemyType.Pink;
         }
         else
         {
@@ -83,14 +101,37 @@ public class move : MonoBehaviour
         {
             this.tag = "Green";
             enemyType = EnemyType.Green;
+            health = 100;
             healthMoney.money += 25;
         }
         else if (this.tag == "Red")
         {
             this.tag = "Blue";
             enemyType = EnemyType.Blue;
+            health = 200;
             pow();
             healthMoney.money += 45;
+        }
+        else if (this.tag == "Yellow")
+        {
+            this.tag = "Red";
+            enemyType = EnemyType.Red;
+            health = 400;
+            healthMoney.money += 65;
+        }
+        else if (this.tag == "Orange")
+        {
+            this.tag = "Yellow";
+            enemyType = EnemyType.Yellow;
+            health = 800;
+            healthMoney.money += 75;
+        }
+        else if (this.tag == "Pink")
+        {
+            this.tag = "Orange"
+            enemyType = EnemyType.Orange;
+            health = 1600;
+            healthMoney.money += 80;
         }
         else
         {
@@ -156,6 +197,18 @@ public class move : MonoBehaviour
         else if (enemyType == EnemyType.Red)
         {
             sr.color = Color.red;
+        }
+        else if (enemyType == EnemyType.Yellow)
+        {
+            sr.color = Color.yellow;
+        }
+        else if (enemyType == EnemyType.Orange)
+        {
+            sr.color = Color.orange;
+        }
+        else if (enemyType == EnemyType.Pink)
+        {
+            sr.color = Color.pink;
         }
         else
         {
