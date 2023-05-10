@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public Transform target;
     [SerializeField] private float trackingSpeed = 5f;
-
+    public int shotby;
     private bool isTracking = true;
 
     void Update()

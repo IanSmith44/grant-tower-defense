@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class tower : MonoBehaviour
 {
+    public int type;
     [SerializeField] private SpriteRenderer circleSprite;
     private Vector3 mousePosition;
     public bool placed = false;

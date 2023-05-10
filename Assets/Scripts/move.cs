@@ -200,15 +200,15 @@ public class move : MonoBehaviour
         }
         else if (enemyType == EnemyType.Yellow)
         {
-            sr.color = Color.yellow;
+            sr.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
         }
         else if (enemyType == EnemyType.Orange)
         {
-            sr.color = Color.orange;
+            sr.color = new Color(1.0f, 0.5f, 0.0f, 1.0f);
         }
         else if (enemyType == EnemyType.Pink)
         {
-            sr.color = new Color(1f, 0.5f, 0.5f, 1f);
+            sr.color = new Color(1f, 0.3f, 0.8f, 1f);
         }
         else
         {
@@ -243,13 +243,17 @@ public class move : MonoBehaviour
         }
         else if (collision.gameObject.tag == "projectile")
         {
-            if (health <= 0)
-            {
-                Die();
-            }
-            else
+            if(collision.gameObject.GetComponent<Projectile>().shotby == 1)
             {
                 health -= 25;
+            }
+            else if(collision.gameObject.GetComponent<Projectile>().shotby == 2)
+            {
+                health -= 55;
+            }
+            if(health <= 0)
+            {
+                Die();
             }
         }
         if (collision.gameObject.tag == "End")

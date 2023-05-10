@@ -18,6 +18,7 @@ public class enemySpawn : MonoBehaviour
     private string[] round10 = {"yellow", "yellow", "yellow", "yellow", "yellow"};
     private string[] round11 = {"yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"};
     private string[] round12 = {"orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow"};
+    private string[] round13 = {"pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink"};
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;
@@ -36,6 +37,41 @@ public class enemySpawn : MonoBehaviour
     {
         spawnCountdown = spawnTime - firstSpawnOffset;
     }
+    void Inst(string val)
+    {
+        GameObject type;
+        if(val == "green")
+        {
+            type = green;
+        }
+        else if(val == "blue")
+        {
+            type = blue;
+        }
+        else if(val == "red")
+        {
+            type = red;
+        }
+        else if(val == "yellow")
+        {
+            type = yellow;
+        }
+        else if(val == "orange")
+        {
+            type = orange;
+        }
+        else if(val == "pink")
+        {
+            type = pink;
+        }
+        else
+        {
+            return;
+        }
+        recentEnemy = Instantiate(type, spawnPosition, Quaternion.identity);
+        recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
+        recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+    }
     void Spawn()
     {
         //Logs what the current round is every time the Spawn function is called
@@ -50,49 +86,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round1[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round1[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round1[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round1[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round1[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round1[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round1[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("Enemy type is not configured in enemySpawn.cs1");
+                    Inst(round1[spawnCount]);
                 }
             }
             else if (roundManager.round == 2)
@@ -102,49 +98,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round2[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round2[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round2[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round2[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round2[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round2[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round2[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs2");
+                    Inst(round2[spawnCount]);
                 }
             }
             else if (roundManager.round == 3)
@@ -154,49 +110,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round3[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round3[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round3[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round3[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round3[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round3[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round3[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs3");
+                    Inst(round3[spawnCount]);
                 }
             }
             else if (roundManager.round == 4)
@@ -206,49 +122,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round4[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round4[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round4[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round4[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round4[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round4[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round4[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round4[spawnCount]);
                 }
             }
             else if (roundManager.round == 5)
@@ -258,49 +134,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round5[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round5[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round5[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round5[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round5[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round5[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round5[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round5[spawnCount]);
                 }
             }
             else if (roundManager.round == 6)
@@ -310,49 +146,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round6[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round6[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round6[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round6[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round6[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round6[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round6[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round6[spawnCount]);
                 }
             }
             else if (roundManager.round == 7)
@@ -362,49 +158,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round7[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round7[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round7[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round7[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round7[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round7[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round7[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round7[spawnCount]);
                 }
             }
             else if (roundManager.round == 8)
@@ -414,49 +170,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round8[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round8[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round8[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round8[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round8[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round8[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round8[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round8[spawnCount]);
                 }
             }
             else if (roundManager.round == 9)
@@ -466,49 +182,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round9[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round9[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round9[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round9[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round9[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round9[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round9[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round9[spawnCount]);
                 }
             }
             else if (roundManager.round == 10)
@@ -518,49 +194,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round10[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round10[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round10[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round10[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round10[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round10[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round10[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round10[spawnCount]);
                 }
             }
             else if (roundManager.round == 11)
@@ -570,49 +206,9 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round11[spawnCount] == "green")
-                {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round11[spawnCount] == "blue")
-                {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round11[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round11[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round11[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round11[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round11[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
-                }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round11[spawnCount]);
                 }
             }
             else if (roundManager.round == 12)
@@ -622,49 +218,21 @@ public class enemySpawn : MonoBehaviour
                     spawning = false;
                     spawnCount = -1;
                 }
-                else if (round12[spawnCount] == "green")
+                else
                 {
-                    recentEnemy = Instantiate(green, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
+                    Inst(round12[spawnCount]);
                 }
-                else if (round12[spawnCount] == "blue")
+            }
+            else if ( roundManager.round == 13)
+            {
+                if(spawnCount > round13.Length - 1)
                 {
-                    recentEnemy = Instantiate(blue, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round12[spawnCount] == "red")
-                {
-                    recentEnemy = Instantiate(red, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round12[spawnCount] == "yellow")
-                {
-                    recentEnemy = Instantiate(yellow, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round12[spawnCount] == "orange")
-                {
-                    recentEnemy = Instantiate(orange, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round12[spawnCount] == "pink")
-                {
-                    recentEnemy = Instantiate(pink, spawnPosition, Quaternion.identity);
-                    recentEnemy.GetComponent<move>().healthMoney = FindObjectOfType<healthMoney>();
-                    recentEnemy.GetComponent<move>().roundManager = FindObjectOfType<roundManager>();
-                }
-                else if (round12[spawnCount] == "none")
-                {
-                    Debug.Log("No enemy spawned");
+                    spawning = false;
+                    spawnCount = -1;
                 }
                 else
                 {
-                    Debug.Log("enemy type is not configured in enemySpawn.cs4");
+                    Inst(round13[spawnCount]);
                 }
             }
         }

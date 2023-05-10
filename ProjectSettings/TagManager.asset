@@ -15,6 +15,9 @@ TagManager:
   - Tower
   - Path
   - projectile
+  - Yellow
+  - Orange
+  - Pink
   layers:
   - Default
   - TransparentFX

@@ -46,6 +46,7 @@ public class ProjectileLauncher : MonoBehaviour
             projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             projectile.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right * projectileSpeed;
             projectile.GetComponent<Projectile>().target = target;
+            projectile.GetComponent<Projectile>().shotby = tower.type;
             target = null;
         }
     }
