@@ -16,7 +16,8 @@ public class move : MonoBehaviour
         Red,
         Yellow,
         Orange,
-        Pink
+        Pink,
+        Glimp
     }
     [SerializeField] private EnemyType enemyType;
     public int health = 100;
