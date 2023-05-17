@@ -303,6 +303,7 @@ MonoBehaviour:
   - Yellow
   - Orange
   - Pink
+  - Glimp
   projectileSpeed: 10
   range: 10
 --- !u!50 &5530886210949594894

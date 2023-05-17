@@ -8,7 +8,7 @@ public class healthMoney : MonoBehaviour
     [SerializeField] private roundManager roundManager;
     [SerializeField] private TextMeshProUGUI healthObject;
     [SerializeField] private TextMeshProUGUI moneyObject;
-    public int health = 100;
+    public int health = 150;
     public int money = 100;
 
     // Start is called before the first frame update

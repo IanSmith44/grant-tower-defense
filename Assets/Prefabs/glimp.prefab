@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4637213130942343469}
   m_Layer: 3
   m_Name: glimp
-  m_TagString: Pink
+  m_TagString: Glimp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1220843523109383181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.09, y: 4, z: -0.138}
-  m_LocalScale: {x: 0.049, y: 0.049, z: 0.049}
+  m_LocalScale: {x: 0.196, y: 0.196, z: 0.196}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20.15, y: 20.15}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &364595074631451405
 MonoBehaviour:
@@ -128,8 +128,9 @@ MonoBehaviour:
   range: 3
   targetTags: []
   sr: {fileID: 713312506094879172}
-  enemyType: 0
-  health: 100
+  Pinkprefab: {fileID: 1220843523109383181, guid: dc761b40c2ffd7d4d8be65342b7140de, type: 3}
+  enemyType: 6
+  health: 6400
   healthMoney: {fileID: 0}
   roundManager: {fileID: 0}
   rb: {fileID: 4637213130942343469}

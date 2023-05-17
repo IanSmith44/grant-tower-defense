@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +21,14 @@ public class move : MonoBehaviour
         Pink,
         Glimp
     }
+    [SerializeField] private GameObject Pinkprefab;
     [SerializeField] private EnemyType enemyType;
+    private GameObject recentSpawn;
     public int health = 100;
     public healthMoney healthMoney;
     public roundManager roundManager;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private enum Direction
+    public enum Direction
     {
         Right,
         Up,
@@ -32,7 +36,7 @@ public class move : MonoBehaviour
         Left
 
     }
-    [SerializeField] private Direction direction;
+    public Direction direction;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +70,11 @@ public class move : MonoBehaviour
             health = 3200;
             enemyType = EnemyType.Pink;
         }
+        else if (this.tag == "Glimp")
+        {
+            health = 6400;
+            enemyType = EnemyType.Glimp;
+        }
         else
         {
             Debug.Log("Cannot Apply health because no valid enemy type detected");
@@ -91,7 +100,7 @@ public class move : MonoBehaviour
         }
     }
 
-    void Die()
+    async void Die()
     {
         if (this.tag == "Green")
         {
@@ -103,7 +112,7 @@ public class move : MonoBehaviour
             this.tag = "Green";
             enemyType = EnemyType.Green;
             health = 100;
-            healthMoney.money += 25;
+            healthMoney.money += 20;
         }
         else if (this.tag == "Red")
         {
@@ -111,28 +120,38 @@ public class move : MonoBehaviour
             enemyType = EnemyType.Blue;
             health = 200;
             pow();
-            healthMoney.money += 45;
+            healthMoney.money += 25;
         }
         else if (this.tag == "Yellow")
         {
             this.tag = "Red";
             enemyType = EnemyType.Red;
             health = 400;
-            healthMoney.money += 65;
+            healthMoney.money += 30;
         }
         else if (this.tag == "Orange")
         {
             this.tag = "Yellow";
             enemyType = EnemyType.Yellow;
             health = 800;
-            healthMoney.money += 75;
+            healthMoney.money += 40;
         }
         else if (this.tag == "Pink")
         {
             this.tag = "Orange";
             enemyType = EnemyType.Orange;
             health = 1600;
-            healthMoney.money += 80;
+            healthMoney.money += 50;
+        }
+        else if (this.tag == "Glimp")
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                await Task.Delay(500);
+                recentSpawn = Instantiate(Pinkprefab, transform.position, Quaternion.identity);
+                recentSpawn.GetComponent<move>().direction = direction;
+            }
+            Destroy(gameObject);
         }
         else
         {
@@ -147,18 +166,39 @@ public class move : MonoBehaviour
         {
             if (speedUp)
             {
-                rb.velocity = new Vector2(2, 0);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(1.5f, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(2,0);
+                }
             }
             else
             {
-                rb.velocity = new Vector2(1, 0);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(0.75f, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(1,0);
+                }
             }
         }
         else if (direction == Direction.Left)
         {
             if (speedUp)
             {
-                rb.velocity = new Vector2(-2, 0);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(-1.5f, 0);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-2,0);
+                }
             }
             else
             {
@@ -169,22 +209,50 @@ public class move : MonoBehaviour
         {
             if (speedUp)
             {
-                rb.velocity = new Vector2(0, 2);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(0, 1.5f);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0,2);
+                }
             }
             else
             {
-                rb.velocity = new Vector2(0, 1);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(0, 0.75f);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, 1);
+                }
             }
         }
         else if (direction == Direction.Down)
         {
             if (speedUp)
             {
-                rb.velocity = new Vector2(0, -2);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(0, -1.5f);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, -2);
+                }
             }
             else
             {
-                rb.velocity = new Vector2(0, -1);
+                if(enemyType == EnemyType.Glimp)
+                {
+                    rb.velocity = new Vector2(0, -0.75f);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, -1);
+                }
             }
         }
         if (enemyType == EnemyType.Green)
@@ -244,6 +312,7 @@ public class move : MonoBehaviour
         }
         else if (collision.gameObject.tag == "projectile")
         {
+            Die();
             if(collision.gameObject.GetComponent<Projectile>().shotby == 1)
             {
                 health -= 25;
