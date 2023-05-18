@@ -16,8 +16,9 @@ public class Projectile : MonoBehaviour
             // Update the velocity to track the target
             Vector3 targetDir = target.position - transform.position;
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+            angle-=90f;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            GetComponent<Rigidbody2D>().velocity = transform.right * trackingSpeed;
+            GetComponent<Rigidbody2D>().velocity = transform.up * trackingSpeed;
         }
     }
 

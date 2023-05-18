@@ -6,8 +6,13 @@ using UnityEngine;
 
 public class move : MonoBehaviour
 {
+    [SerializeField] private float fireInterval = 1f;
+    [SerializeField] private float projectileSpeed;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float minmovespeed;
+    [SerializeField] private float maxmovespeed;
+    private float movespeed;
     private Transform target;
-    [SerializeField] private float range = 3f;
     [SerializeField] private string[] targetTags;
     private bool speedUp = false;
     [SerializeField] private SpriteRenderer sr;
@@ -40,6 +45,9 @@ public class move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartFiring();
+        movespeed = UnityEngine.Random.Range(minmovespeed, maxmovespeed);
+        Debug.Log(movespeed);
         if (this.tag == "Green")
         {
             health = 100;
@@ -87,16 +95,28 @@ public class move : MonoBehaviour
         foreach (string tag in targetTags)
         {
             GameObject[] targets = GameObject.FindGameObjectsWithTag(tag);
-            GameObject[] useableTargets;
             foreach (GameObject t in targets)
             {
                 float distance = Vector3.Distance(transform.position, t.transform.position);
-                if (distance < closestDistance && distance <= range)
+                if (distance < closestDistance)
                 {
+                    Debug.Log(distance);
                     closestDistance = distance;
                     target = t.transform;
                 }
             }
+        }
+        if (target != null)
+        {
+            // Calculate the angle to the target
+            Vector3 targetDir = target.position - transform.position;
+            float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+            // Instantiate the projectile and aim at the target
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            projectile.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right * projectileSpeed;
+            projectile.GetComponent<Projectile>().target = target;
+            projectile.GetComponent<Projectile>().shotby = -1;
+            target = null;
         }
     }
 
@@ -104,8 +124,8 @@ public class move : MonoBehaviour
     {
         if (this.tag == "Green")
         {
-            Destroy(gameObject);
             healthMoney.money += 15;
+            Destroy(gameObject);
         }
         else if (this.tag == "Blue")
         {
@@ -113,14 +133,15 @@ public class move : MonoBehaviour
             enemyType = EnemyType.Green;
             health = 100;
             healthMoney.money += 20;
+            Destroy(gameObject);
         }
         else if (this.tag == "Red")
         {
             this.tag = "Blue";
             enemyType = EnemyType.Blue;
             health = 200;
-            pow();
             healthMoney.money += 25;
+            Destroy(gameObject);
         }
         else if (this.tag == "Yellow")
         {
@@ -128,6 +149,7 @@ public class move : MonoBehaviour
             enemyType = EnemyType.Red;
             health = 400;
             healthMoney.money += 30;
+            Destroy(gameObject);
         }
         else if (this.tag == "Orange")
         {
@@ -135,13 +157,16 @@ public class move : MonoBehaviour
             enemyType = EnemyType.Yellow;
             health = 800;
             healthMoney.money += 40;
+            Destroy(gameObject);
         }
         else if (this.tag == "Pink")
         {
+            CancelInvoke("pow");
             this.tag = "Orange";
             enemyType = EnemyType.Orange;
             health = 1600;
             healthMoney.money += 50;
+            Destroy(gameObject);
         }
         else if (this.tag == "Glimp")
         {
@@ -150,6 +175,7 @@ public class move : MonoBehaviour
                 await Task.Delay(500);
                 recentSpawn = Instantiate(Pinkprefab, transform.position, Quaternion.identity);
                 recentSpawn.GetComponent<move>().direction = direction;
+                recentSpawn.GetComponent<move>().StartFiring();
             }
             Destroy(gameObject);
         }
@@ -159,100 +185,54 @@ public class move : MonoBehaviour
         }
         roundManager.EnemyDied();
     }
-    // Update is called once per frame
+    public void StartFiring()
+    {
+        InvokeRepeating("pow", fireInterval, fireInterval);
+    }
     void Update()
     {
         if (direction == Direction.Right)
         {
             if (speedUp)
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(1.5f, 0);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(2,0);
-                }
+                rb.velocity = new Vector2(movespeed*2,0);
             }
             else
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(0.75f, 0);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(1,0);
-                }
+                rb.velocity = new Vector2(movespeed, 0);
             }
         }
         else if (direction == Direction.Left)
         {
             if (speedUp)
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(-1.5f, 0);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(-2,0);
-                }
+                    rb.velocity = new Vector2(movespeed*-2,0);
             }
             else
             {
-                rb.velocity = new Vector2(-1, 0);
+                rb.velocity = new Vector2(movespeed*-1, 0);
             }
         }
         else if (direction == Direction.Up)
         {
             if (speedUp)
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(0, 1.5f);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(0,2);
-                }
+                rb.velocity = new Vector2(0, movespeed*2);
             }
             else
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(0, 0.75f);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(0, 1);
-                }
+                rb.velocity = new Vector2(0, movespeed);
             }
         }
         else if (direction == Direction.Down)
         {
             if (speedUp)
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(0, -1.5f);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(0, -2);
-                }
+                rb.velocity = new Vector2(0, movespeed*-2);
             }
             else
             {
-                if(enemyType == EnemyType.Glimp)
-                {
-                    rb.velocity = new Vector2(0, -0.75f);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(0, -1);
-                }
+                rb.velocity = new Vector2(0, movespeed*-1);
             }
         }
         if (enemyType == EnemyType.Green)
@@ -312,7 +292,6 @@ public class move : MonoBehaviour
         }
         else if (collision.gameObject.tag == "projectile")
         {
-            Die();
             if(collision.gameObject.GetComponent<Projectile>().shotby == 1)
             {
                 health -= 25;

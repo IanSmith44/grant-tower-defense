@@ -125,6 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa201215c2dd52f49a1d49994452a3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileSpeed: 10
+  projectilePrefab: {fileID: 5742014354644851909, guid: 769fb1838bf40874ca394f4d84024e58, type: 3}
+  minmovespeed: 1.5
+  maxmovespeed: 2.5
   range: 3
   targetTags: []
   sr: {fileID: 713312506094879172}

@@ -19,6 +19,7 @@ TagManager:
   - Orange
   - Pink
   - Glimp
+  - Grojectile
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Projectile
   - CollideThings
   - Gate
-  - 
+  - Grojectile
   - 
   - 
   - 

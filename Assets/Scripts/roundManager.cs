@@ -12,6 +12,10 @@ public class roundManager : MonoBehaviour
     private GameObject[] greenEnemies;
     private GameObject[] redEnemies;
     private GameObject[] blueEnemies;
+    private GameObject[] orangeEnemies;
+    private GameObject[] pinkEnemies;
+    private GameObject[] yellowEnemies;
+    private GameObject[] glimps;
     public GameObject[] enemiesList;
     void Start()
     {
@@ -41,10 +45,18 @@ public class roundManager : MonoBehaviour
         greenEnemies = GameObject.FindGameObjectsWithTag("Green");
         redEnemies = GameObject.FindGameObjectsWithTag("Red");
         blueEnemies = GameObject.FindGameObjectsWithTag("Blue");
-        enemiesList = new GameObject[greenEnemies.Length + redEnemies.Length + blueEnemies.Length];
+        orangeEnemies = GameObject.FindGameObjectsWithTag("Orange");
+        pinkEnemies = GameObject.FindGameObjectsWithTag("Pink");
+        yellowEnemies = GameObject.FindGameObjectsWithTag("Yellow");
+        glimps = GameObject.FindGameObjectsWithTag("Glimp");
+        enemiesList = new GameObject[greenEnemies.Length + redEnemies.Length + blueEnemies.Length + orangeEnemies.Length + pinkEnemies.Length + yellowEnemies.Length + glimps.Length];
         greenEnemies.CopyTo(enemiesList, 0);
         redEnemies.CopyTo(enemiesList, greenEnemies.Length);
         blueEnemies.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length);
+        orangeEnemies.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length + blueEnemies.Length);
+        pinkEnemies.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length + blueEnemies.Length + orangeEnemies.Length);
+        yellowEnemies.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length + blueEnemies.Length + orangeEnemies.Length + pinkEnemies.Length);
+        glimps.CopyTo(enemiesList, greenEnemies.Length + redEnemies.Length + blueEnemies.Length + orangeEnemies.Length + pinkEnemies.Length + yellowEnemies.Length);
         enemiesCount = enemiesList.Length;
         if (checkNextFrame)
         {

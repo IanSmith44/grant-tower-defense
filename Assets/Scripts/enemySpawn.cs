@@ -19,6 +19,8 @@ public class enemySpawn : MonoBehaviour
     private string[] round11 = {"yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"};
     private string[] round12 = {"orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow"};
     private string[] round13 = {"pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink"};
+    private string[] round14 = {"glimp", "none", "none", "none", "glimp"};
+    private string[] round15 = {"glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp"};
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;
@@ -32,6 +34,7 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private GameObject yellow;
     [SerializeField] private GameObject orange;
     [SerializeField] private GameObject pink;
+    [SerializeField] private GameObject glimp;
     private GameObject recentEnemy;
     void Start()
     {
@@ -64,6 +67,10 @@ public class enemySpawn : MonoBehaviour
         {
             type = pink;
         }
+        else if(val == "glimp")
+        {
+            type = glimp;
+        }
         else
         {
             return;
@@ -74,8 +81,6 @@ public class enemySpawn : MonoBehaviour
     }
     void Spawn()
     {
-        //Logs what the current round is every time the Spawn function is called
-        Debug.Log(roundManager.round);
         if (spawning)
         {
             spawnCount += 1;
@@ -233,6 +238,28 @@ public class enemySpawn : MonoBehaviour
                 else
                 {
                     Inst(round13[spawnCount]);
+                }
+            }
+            else if (roundManager.round == 14)
+            {
+                if(spawnCount > round14.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else{
+                    Inst(round14[spawnCount]);
+                }
+            }
+            else if (roundManager.round == 15)
+            {
+                if(spawnCount > round15.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else{
+                    Inst(round15[spawnCount]);
                 }
             }
         }

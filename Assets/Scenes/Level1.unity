@@ -1570,7 +1570,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 32766
   m_Sprite: {fileID: -1063660690, guid: 6b7044d420ee7194ba27908be15fa675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3404,6 +3404,7 @@ MonoBehaviour:
   yellow: {fileID: 1220843523109383181, guid: e9e17d352150d8549b2ce63d4fce6f6a, type: 3}
   orange: {fileID: 1220843523109383181, guid: f1427da7443373c4c8ff0d47b6d8d4c1, type: 3}
   pink: {fileID: 1220843523109383181, guid: dc761b40c2ffd7d4d8be65342b7140de, type: 3}
+  glimp: {fileID: 0}
 --- !u!114 &854969352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3485,10 +3486,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a299d1bdb47731498f06a5de40b8b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower1txt: {fileID: 1564551728}
+  tower2txt: {fileID: 1510062004}
   tower1: {fileID: 7302506903794002153, guid: 2eb253e39d9652c42bebb0bcf41cc2da, type: 3}
   tower2: {fileID: 7302506903794002153, guid: 753a599616528d84f8e7feddb2c4f169, type: 3}
+  tower3: {fileID: 0}
   tower1cost: 150
   tower2cost: 355
+  tower3cost: 750
   healthMoney: {fileID: 854969348}
 --- !u!1 &867295177
 GameObject:
@@ -3703,7 +3708,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 32766
   m_Sprite: {fileID: -1063660690, guid: 6b7044d420ee7194ba27908be15fa675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9432,7 +9437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $355
+  m_text: $349
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9702,7 +9707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $150
+  m_text: $149
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
