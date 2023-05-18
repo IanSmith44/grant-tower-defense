@@ -309,15 +309,31 @@ public class move : MonoBehaviour
         {
             if (this.tag == "Green")
             {
-                healthMoney.health -= 1;
+                healthMoney.health -= 15;
             }
             else if (this.tag == "Blue")
             {
-                healthMoney.health -= 2;
+                healthMoney.health -= 20;
             }
             else if (this.tag == "Red")
             {
-                healthMoney.health -= 3;
+                healthMoney.health -= 25;
+            }
+            else if (this.tag == "Orange")
+            {
+                healthMoney.health -= 30;
+            }
+            else if (this.tag == "Yellow")
+            {
+                healthMoney.health -= 35;
+            }
+            else if (this.tag == "Pink")
+            {
+                healthMoney.health -= 40;
+            }
+            else if (this.tag == "Glimp")
+            {
+                healthMoney.health -= 65;
             }
             else
             {
