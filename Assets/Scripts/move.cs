@@ -75,7 +75,7 @@ public class move : MonoBehaviour
         }
         else if (this.tag == "Pink")
         {
-            health = 3200;
+            health = 1800;
             enemyType = EnemyType.Pink;
         }
         else if (this.tag == "Glimp")

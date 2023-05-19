@@ -10,7 +10,7 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private string[] targetTags;
     [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float range = 10f;
+    [SerializeField] private float range = 3.675f;
 
     private Transform target;
 

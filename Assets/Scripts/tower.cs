@@ -9,6 +9,7 @@ public class tower : MonoBehaviour
     [SerializeField] private SpriteRenderer circleSprite;
     private Vector3 mousePosition;
     public bool placed = false;
+    private int health = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,14 @@ public class tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        if(transform.position.x > 5.14)
+        {
+            placed = false;
+        }
         if (!placed)
         {
             circleSprite.enabled = true;
@@ -42,14 +51,14 @@ public class tower : MonoBehaviour
         }
         if (placed)
         {
-            circleSprite.enabled = false;
+            //circleSprite.enabled = false;
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Grojectile")
         {
-            Destroy(gameObject);
+            health-=25;
         }
     }
 }
