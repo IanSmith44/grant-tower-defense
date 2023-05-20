@@ -8,6 +8,7 @@ public class healthMoney : MonoBehaviour
     [SerializeField] private roundManager roundManager;
     [SerializeField] private TextMeshProUGUI healthObject;
     [SerializeField] private TextMeshProUGUI moneyObject;
+    [SerializeField] private TextMeshProUGUI roundObject;
     public int health = 150;
     public int money = 100;
 
@@ -27,5 +28,6 @@ public class healthMoney : MonoBehaviour
         }
         healthObject.text = "Health: " + health;
         moneyObject.SetText("Money: " + money);
+        roundObject.SetText("Round: " + roundManager.round);
     }
 }

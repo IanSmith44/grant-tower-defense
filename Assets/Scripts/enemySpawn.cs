@@ -35,6 +35,7 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private GameObject orange;
     [SerializeField] private GameObject pink;
     [SerializeField] private GameObject glimp;
+    private float time = 1f;
     private GameObject recentEnemy;
     void Start()
     {
@@ -266,21 +267,23 @@ public class enemySpawn : MonoBehaviour
     }
     public void currentlySpawning()
     {
-        //Checks if the round is over, if it is, then it sets spawning to true
         if (roundOver)
         {
             roundOver = false;
             spawning = true;
+            Time.timeScale = time;
         }
         else if (!roundOver)
         {
             if (Time.timeScale == 1f)
             {
                 Time.timeScale = 2f;
+                time = 2f;
             }
             else if (Time.timeScale == 2f)
             {
                 Time.timeScale = 1f;
+                time = 1f;
             }
         }
     }

@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             GetComponent<Rigidbody2D>().velocity = transform.up * trackingSpeed;
         }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -33,6 +33,7 @@ public class move : MonoBehaviour
     public healthMoney healthMoney;
     public roundManager roundManager;
     [SerializeField] private Rigidbody2D rb;
+    private bool glimpd = false;
     public enum Direction
     {
         Right,
@@ -80,7 +81,7 @@ public class move : MonoBehaviour
         }
         else if (this.tag == "Glimp")
         {
-            health = 6400;
+            health = 400;
             enemyType = EnemyType.Glimp;
         }
         else
@@ -129,47 +130,33 @@ public class move : MonoBehaviour
         }
         else if (this.tag == "Blue")
         {
-            this.tag = "Green";
-            enemyType = EnemyType.Green;
-            health = 100;
             healthMoney.money += 20;
             Destroy(gameObject);
         }
         else if (this.tag == "Red")
         {
-            this.tag = "Blue";
-            enemyType = EnemyType.Blue;
-            health = 200;
             healthMoney.money += 25;
             Destroy(gameObject);
         }
         else if (this.tag == "Yellow")
         {
-            this.tag = "Red";
-            enemyType = EnemyType.Red;
-            health = 400;
             healthMoney.money += 30;
             Destroy(gameObject);
         }
         else if (this.tag == "Orange")
         {
-            this.tag = "Yellow";
-            enemyType = EnemyType.Yellow;
-            health = 800;
             healthMoney.money += 40;
             Destroy(gameObject);
         }
         else if (this.tag == "Pink")
         {
             CancelInvoke("pow");
-            this.tag = "Orange";
-            enemyType = EnemyType.Orange;
-            health = 1600;
             healthMoney.money += 50;
             Destroy(gameObject);
         }
-        else if (this.tag == "Glimp")
+        else if (this.tag == "Glimp" && !glimpd)
         {
+            glimpd = true;
             for(int i = 0; i < 5; i++)
             {
                 await Task.Delay(500);

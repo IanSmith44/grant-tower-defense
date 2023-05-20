@@ -278,6 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad4becb70c7fa54dbce73d967c5923f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 5530886210949594894}
+  mouseover: 0
   type: 2
   circleSprite: {fileID: 5358091754056253340}
   placed: 0
@@ -305,7 +307,7 @@ MonoBehaviour:
   - Pink
   - Glimp
   projectileSpeed: 12
-  range: 12
+  range: 10
 --- !u!50 &5530886210949594894
 Rigidbody2D:
   serializedVersion: 4

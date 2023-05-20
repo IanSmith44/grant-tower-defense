@@ -10,7 +10,7 @@ public class towerSpawn : MonoBehaviour
     [SerializeField] private GameObject tower1;
     [SerializeField] private GameObject tower2;
     [SerializeField] private GameObject tower3;
-    [SerializeField] private int tower1cost = 150;
+    [SerializeField] private int tower1cost = 100;
     [SerializeField] private int tower2cost = 355;
     [SerializeField] private int tower3cost = 750;
     private GameObject recentTower;

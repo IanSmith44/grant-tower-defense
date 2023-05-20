@@ -24,10 +24,7 @@ public class roundManager : MonoBehaviour
 
     public void EnemyDied()
     {
-        /*if (enemiesCount == 0)
-        {*/
-            checkNextFrame = true;
-        //}
+        checkNextFrame = true;
     }
 
     public void Die()
@@ -37,11 +34,6 @@ public class roundManager : MonoBehaviour
 
     void Update()
     {
-        /*
-        var z = new int[x.Length + y.Length];
-        x.CopyTo(z, 0);
-        y.CopyTo(z, x.Length);
-        */
         greenEnemies = GameObject.FindGameObjectsWithTag("Green");
         redEnemies = GameObject.FindGameObjectsWithTag("Red");
         blueEnemies = GameObject.FindGameObjectsWithTag("Blue");
@@ -65,6 +57,7 @@ public class roundManager : MonoBehaviour
             {
                 round++;
                 enemySpawn.roundOver = true;
+                Time.timeScale = 1f;
             }
         }
     }

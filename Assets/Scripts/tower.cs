@@ -5,17 +5,21 @@ using UnityEngine.InputSystem;
 
 public class tower : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
+    public bool mouseover;
     public int type;
     [SerializeField] private SpriteRenderer circleSprite;
     private Vector3 mousePosition;
     public bool placed = false;
     private int health = 100;
-    // Start is called before the first frame update
-    void Start()
+    private void OnMouseEnter()
     {
-
+        mouseover = true;
     }
-
+    private void OnMouseExit()
+    {
+        mouseover = false;
+    }
     public void Place(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -23,7 +27,6 @@ public class tower : MonoBehaviour
             placed = true;
         }
     }
-
     public void PlaceTouch(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -31,9 +34,6 @@ public class tower : MonoBehaviour
             placed = true;
         }
     }
-
-
-    // Update is called once per frame
     void Update()
     {
         if(health <= 0)
@@ -46,12 +46,19 @@ public class tower : MonoBehaviour
         }
         if (!placed)
         {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             circleSprite.enabled = true;
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, 0f, 1f);
         }
-        if (placed)
+        else if(mouseover == true)
         {
-            //circleSprite.enabled = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            circleSprite.enabled = true;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            circleSprite.enabled = false;
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

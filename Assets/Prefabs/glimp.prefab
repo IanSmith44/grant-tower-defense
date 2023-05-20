@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 32766
   m_Sprite: {fileID: 21300000, guid: 571489dd7d5b07c428759b8814aefd39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -125,11 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa201215c2dd52f49a1d49994452a3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireInterval: 1
   projectileSpeed: 10
   projectilePrefab: {fileID: 5742014354644851909, guid: 769fb1838bf40874ca394f4d84024e58, type: 3}
   minmovespeed: 1.5
   maxmovespeed: 2.5
-  range: 3
   targetTags: []
   sr: {fileID: 713312506094879172}
   Pinkprefab: {fileID: 1220843523109383181, guid: dc761b40c2ffd7d4d8be65342b7140de, type: 3}

@@ -10,7 +10,7 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private string[] targetTags;
     [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float range = 3.675f;
+    [SerializeField] private float range;
 
     private Transform target;
 
@@ -29,7 +29,7 @@ public class ProjectileLauncher : MonoBehaviour
             foreach (GameObject t in targets)
             {
                 float distance = Vector3.Distance(transform.position, t.transform.position);
-                if (distance < closestDistance && distance <= range)
+                if (distance < closestDistance)
                 {
                     closestDistance = distance;
                     target = t.transform;
@@ -37,7 +37,7 @@ public class ProjectileLauncher : MonoBehaviour
             }
         }
 
-        if (target != null && tower.placed == true)
+        if (target != null && tower.placed == true && closestDistance <= range)
         {
             // Calculate the angle to the target
             Vector3 targetDir = target.position - transform.position;
