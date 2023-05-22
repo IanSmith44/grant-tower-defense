@@ -134,7 +134,7 @@ MonoBehaviour:
   sr: {fileID: 713312506094879172}
   Pinkprefab: {fileID: 0}
   enemyType: 1
-  health: 100
+  health: 200
   healthMoney: {fileID: 0}
   roundManager: {fileID: 0}
   rb: {fileID: 4637213130942343469}

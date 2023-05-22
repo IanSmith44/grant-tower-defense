@@ -18,9 +18,9 @@ public class enemySpawn : MonoBehaviour
     private string[] round10 = {"yellow", "yellow", "yellow", "yellow", "yellow"};
     private string[] round11 = {"yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"};
     private string[] round12 = {"orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow"};
-    private string[] round13 = {"pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink", "pink"};
+    private string[] round13 = {"pink", "pink", "pink", "pink", "pink", "pink"};
     private string[] round14 = {"glimp", "none", "none", "none", "glimp"};
-    private string[] round15 = {"glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp", "glimp"};
+    private string[] round15 = {"glimp", "glimp", "glimp", "glimp", "glimp"};
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;

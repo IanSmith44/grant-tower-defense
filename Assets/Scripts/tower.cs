@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class tower : MonoBehaviour
 {
+    private bool OnPath = false;
     [SerializeField] private Rigidbody2D rb;
     public bool mouseover;
     public int type;
@@ -40,7 +41,7 @@ public class tower : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if(transform.position.x > 5.14)
+        if(OnPath)
         {
             placed = false;
         }
@@ -66,6 +67,17 @@ public class tower : MonoBehaviour
         if(collision.gameObject.tag == "Grojectile")
         {
             health-=25;
+        }
+        else if(collision.gameObject.tag == "Path")
+        {
+            OnPath = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Path")
+        {
+            OnPath = false;
         }
     }
 }

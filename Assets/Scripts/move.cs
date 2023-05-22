@@ -48,46 +48,6 @@ public class move : MonoBehaviour
     {
         StartFiring();
         movespeed = UnityEngine.Random.Range(minmovespeed, maxmovespeed);
-        Debug.Log(movespeed);
-        if (this.tag == "Green")
-        {
-            health = 100;
-            enemyType = EnemyType.Green;
-        }
-        else if (this.tag == "Blue")
-        {
-            health = 200;
-            enemyType = EnemyType.Blue;
-        }
-        else if (this.tag == "Red")
-        {
-            health = 400;
-            enemyType = EnemyType.Red;
-        }
-        else if (this.tag == "Yellow")
-        {
-            health = 800;
-            enemyType = EnemyType.Yellow;
-        }
-        else if (this.tag == "Orange")
-        {
-            health = 1600;
-            enemyType = EnemyType.Orange;
-        }
-        else if (this.tag == "Pink")
-        {
-            health = 1800;
-            enemyType = EnemyType.Pink;
-        }
-        else if (this.tag == "Glimp")
-        {
-            health = 400;
-            enemyType = EnemyType.Glimp;
-        }
-        else
-        {
-            Debug.Log("Cannot Apply health because no valid enemy type detected");
-        }
     }
 
     void pow()
