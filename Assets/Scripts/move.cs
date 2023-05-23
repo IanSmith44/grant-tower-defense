@@ -13,39 +13,29 @@ public class move : MonoBehaviour
     [SerializeField] private float maxmovespeed;
     private float movespeed;
     private Transform target;
+    private bool dead = false;
     [SerializeField] private string[] targetTags;
     private bool speedUp = false;
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private enum EnemyType
-    {
-        Green,
-        Blue,
-        Red,
-        Yellow,
-        Orange,
-        Pink,
-        Glimp
-    }
     [SerializeField] private GameObject Pinkprefab;
-    [SerializeField] private EnemyType enemyType;
     private GameObject recentSpawn;
-    public int health = 100;
+    public int health;
     public healthMoney healthMoney;
     public roundManager roundManager;
     [SerializeField] private Rigidbody2D rb;
-    private bool glimpd = false;
     public enum Direction
     {
         Right,
         Up,
         Down,
         Left
-
     }
     public Direction direction;
     // Start is called before the first frame update
     void Start()
     {
+        healthMoney = FindObjectOfType<healthMoney>();
+        roundManager = FindObjectOfType<roundManager>();
         StartFiring();
         movespeed = UnityEngine.Random.Range(minmovespeed, maxmovespeed);
     }
@@ -81,7 +71,7 @@ public class move : MonoBehaviour
         }
     }
 
-    async void Die()
+    IEnumerator Die()
     {
         if (this.tag == "Green")
         {
@@ -114,15 +104,15 @@ public class move : MonoBehaviour
             healthMoney.money += 50;
             Destroy(gameObject);
         }
-        else if (this.tag == "Glimp" && !glimpd)
+        else if (this.tag == "Glimp")
         {
-            glimpd = true;
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 3; i++)
             {
-                await Task.Delay(500);
+                yield return new WaitForSeconds(0.5f);
                 recentSpawn = Instantiate(Pinkprefab, transform.position, Quaternion.identity);
                 recentSpawn.GetComponent<move>().direction = direction;
                 recentSpawn.GetComponent<move>().StartFiring();
+                recentSpawn.GetComponent<move>().health = 650;
             }
             Destroy(gameObject);
         }
@@ -182,34 +172,6 @@ public class move : MonoBehaviour
                 rb.velocity = new Vector2(0, movespeed*-1);
             }
         }
-        if (enemyType == EnemyType.Green)
-        {
-            sr.color = Color.green;
-        }
-        else if (enemyType == EnemyType.Blue)
-        {
-            sr.color = Color.blue;
-        }
-        else if (enemyType == EnemyType.Red)
-        {
-            sr.color = Color.red;
-        }
-        else if (enemyType == EnemyType.Yellow)
-        {
-            sr.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
-        }
-        else if (enemyType == EnemyType.Orange)
-        {
-            sr.color = new Color(1.0f, 0.5f, 0.0f, 1.0f);
-        }
-        else if (enemyType == EnemyType.Pink)
-        {
-            sr.color = new Color(1f, 0.3f, 0.8f, 1f);
-        }
-        else
-        {
-            Debug.Log("Enemy type not in move.cs update function");
-        }
         if (transform.position.x > -6.5f && transform.position.y < -3 && transform.position.x < 2.5f && transform.position.y > -4)
         {
             speedUp = true;
@@ -247,9 +209,10 @@ public class move : MonoBehaviour
             {
                 health -= 55;
             }
-            if(health <= 0)
+            if((health <= 0 || gameObject.tag == "Glimp") && !dead)
             {
-                Die();
+                dead = true;
+                StartCoroutine(Die());
             }
         }
         if (collision.gameObject.tag == "End")
