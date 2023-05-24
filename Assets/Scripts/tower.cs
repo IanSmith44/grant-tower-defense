@@ -13,6 +13,7 @@ public class tower : MonoBehaviour
     private Vector3 mousePosition;
     public bool placed = false;
     private int health = 100;
+    private bool OnTower = false;
     private void OnMouseEnter()
     {
         mouseover = true;
@@ -30,7 +31,7 @@ public class tower : MonoBehaviour
     }
     public void PlaceTouch(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !OnTower)
         {
             placed = true;
         }
@@ -72,12 +73,20 @@ public class tower : MonoBehaviour
         {
             OnPath = true;
         }
+        else if(collision.gameObject.tag == "Tower")
+        {
+            OnTower = true;
+        }
     }
     void OnCollisionExit2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Path")
         {
             OnPath = false;
+        }
+        else if(collision.gameObject.tag == "Tower")
+        {
+            OnTower = false;
         }
     }
 }
