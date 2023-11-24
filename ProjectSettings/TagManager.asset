@@ -20,6 +20,7 @@ TagManager:
   - Pink
   - Glimp
   - Grojectile
+  - Glujectile
   layers:
   - Default
   - TransparentFX

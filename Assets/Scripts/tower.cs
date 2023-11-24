@@ -65,11 +65,7 @@ public class tower : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Grojectile")
-        {
-            health-=25;
-        }
-        else if(collision.gameObject.tag == "Path")
+        if(collision.gameObject.tag == "Path")
         {
             OnPath = true;
         }
@@ -88,5 +84,9 @@ public class tower : MonoBehaviour
         {
             OnTower = false;
         }
+    }
+    public void HitByGrojectile()
+    {
+        health-=25;
     }
 }

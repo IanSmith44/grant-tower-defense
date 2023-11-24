@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class menus : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class menus : MonoBehaviour
         {
             onPause();
         }
+    }
+    public void RetryNo()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void RetryYes()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void onPause()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2547080409961387641}
   - component: {fileID: 8472996961563979383}
   - component: {fileID: 1431443363423692690}
-  - component: {fileID: -7831861186764660585}
+  - component: {fileID: 3841797320552959450}
   m_Layer: 11
   m_Name: grojectile
   m_TagString: Grojectile
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 5522b90a37240e44b90d1c56079ce92f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73cf4b35e5ffb3449e197d1372f7316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTags: []
   target: {fileID: 0}
   trackingSpeed: 5
   shotby: 0
+  shotbyobj: {fileID: 0}
 --- !u!50 &1431443363423692690
 Rigidbody2D:
   serializedVersion: 4
@@ -123,8 +125,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-7831861186764660585
-BoxCollider2D:
+--- !u!70 &3841797320552959450
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -133,19 +135,9 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.48, y: 6.03}
-    newSize: {x: 15.36, y: 20.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.48, y: 6.03}
-  m_EdgeRadius: 0
+  m_Size: {x: 4, y: 5.25}
+  m_Direction: 0

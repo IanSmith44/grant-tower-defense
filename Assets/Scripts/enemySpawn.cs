@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class enemySpawn : MonoBehaviour
 {
@@ -35,10 +36,21 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private GameObject orange;
     [SerializeField] private GameObject pink;
     [SerializeField] private GameObject glimp;
-    private float time = 1f;
     private GameObject recentEnemy;
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            spawnPosition = new Vector3(-12.09f, 4, -0.138f);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            spawnPosition = new Vector3(-12.09f, -3.5f, -0.138f);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            spawnPosition = new Vector3(-12.09f, 1.126f, -0.138f);
+        }
         spawnCountdown = spawnTime - firstSpawnOffset;
     }
     void Inst(string val)
@@ -271,20 +283,6 @@ public class enemySpawn : MonoBehaviour
         {
             roundOver = false;
             spawning = true;
-            Time.timeScale = time;
-        }
-        else if (!roundOver)
-        {
-            if (Time.timeScale == 1f)
-            {
-                Time.timeScale = 2f;
-                time = 2f;
-            }
-            else if (Time.timeScale == 2f)
-            {
-                Time.timeScale = 1f;
-                time = 1f;
-            }
         }
     }
 

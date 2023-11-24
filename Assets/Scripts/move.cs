@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class move : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class move : MonoBehaviour
     [SerializeField] private float maxmovespeed;
     private float movespeed;
     private Transform target;
-    private bool dead = false;
+    public bool dead = false;
     [SerializeField] private string[] targetTags;
     private bool speedUp = false;
     [SerializeField] private SpriteRenderer sr;
@@ -23,6 +24,11 @@ public class move : MonoBehaviour
     public healthMoney healthMoney;
     public roundManager roundManager;
     [SerializeField] private Rigidbody2D rb;
+    private bool slow = false;
+    private float originalMoveSpeed;
+    public float slowtime;
+    [SerializeField] private GameObject Glu;
+    [SerializeField] private float GluTime = 3f;
     public enum Direction
     {
         Right,
@@ -34,10 +40,15 @@ public class move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            transform.localScale = transform.localScale / 1.4f;
+        }
         healthMoney = FindObjectOfType<healthMoney>();
         roundManager = FindObjectOfType<roundManager>();
         StartFiring();
         movespeed = UnityEngine.Random.Range(minmovespeed, maxmovespeed);
+        originalMoveSpeed = movespeed;
     }
 
     void pow()
@@ -51,7 +62,7 @@ public class move : MonoBehaviour
                 float distance = Vector3.Distance(transform.position, t.transform.position);
                 if (distance < closestDistance)
                 {
-                    Debug.Log(distance);
+                    //Debug.Log(distance);
                     closestDistance = distance;
                     target = t.transform;
                 }
@@ -70,7 +81,19 @@ public class move : MonoBehaviour
             target = null;
         }
     }
-
+    public void pubDie(int type)
+    {
+        if(type == 4)
+        {
+            slow = true;
+            movespeed = originalMoveSpeed / 2;
+            slowtime = GluTime;
+        }
+        else
+        {
+            StartCoroutine(Die());
+        }
+    }
     IEnumerator Die()
     {
         if (this.tag == "Green")
@@ -128,6 +151,20 @@ public class move : MonoBehaviour
     }
     void Update()
     {
+        if(slow)
+        {
+            Glu.GetComponent<SpriteRenderer>().enabled = true;
+            slowtime -= Time.deltaTime;
+            if(slowtime <= 0)
+            {
+                slow = false;
+            }
+        }
+        else
+        {
+            Glu.GetComponent<SpriteRenderer>().enabled = false;
+            movespeed = originalMoveSpeed;
+        }
         if (direction == Direction.Right)
         {
             if (speedUp)
@@ -174,7 +211,10 @@ public class move : MonoBehaviour
         }
         if (transform.position.x > -6.5f && transform.position.y < -3 && transform.position.x < 2.5f && transform.position.y > -4)
         {
-            speedUp = true;
+            if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                speedUp = true;
+            }
         }
         else
         {
@@ -198,22 +238,6 @@ public class move : MonoBehaviour
         else if (collision.gameObject.tag == "Down")
         {
             direction = Direction.Down;
-        }
-        else if (collision.gameObject.tag == "projectile")
-        {
-            if(collision.gameObject.GetComponent<Projectile>().shotby == 1)
-            {
-                health -= 25;
-            }
-            else if(collision.gameObject.GetComponent<Projectile>().shotby == 2)
-            {
-                health -= 55;
-            }
-            if((health <= 0 || gameObject.tag == "Glimp") && !dead)
-            {
-                dead = true;
-                StartCoroutine(Die());
-            }
         }
         if (collision.gameObject.tag == "End")
         {

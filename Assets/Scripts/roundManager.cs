@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class roundManager : MonoBehaviour
 {
-    [SerializeField] public enemySpawn enemySpawn;
+    [SerializeField] private Slider speed;
+    public enemySpawn enemySpawn;
     private bool checkNextFrame = false;
     [SerializeField] private GameObject diePanel;
     public int round = 1;
@@ -57,8 +59,8 @@ public class roundManager : MonoBehaviour
             {
                 round++;
                 enemySpawn.roundOver = true;
-                Time.timeScale = 1f;
             }
         }
+        Time.timeScale = speed.value;
     }
 }
