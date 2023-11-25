@@ -306,7 +306,7 @@ MonoBehaviour:
   - Orange
   - Pink
   - Glimp
-  projectileSpeed: 10
+  projectileSpeed: 4
   range: 9.55
 --- !u!50 &5530886210949594894
 Rigidbody2D:

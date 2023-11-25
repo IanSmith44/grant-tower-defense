@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private GLOBALS GLOBALS;
     [SerializeField] private string[] targetTags;
     public Transform target;
-    [SerializeField] private float trackingSpeed = 5f;
+    public float trackingSpeed = 5f;
     public int shotby;
     public GameObject shotbyobj;
     private bool isTracking = true;
@@ -58,6 +58,10 @@ public class Projectile : MonoBehaviour
             else if (shotby == 2)
             {
                 collision.gameObject.GetComponent<move>().health -= 55;
+            }
+            else if (shotby == 5)
+            {
+                collision.gameObject.GetComponent<move>().health -= 100;
             }
             else if (shotby == 3)
             {

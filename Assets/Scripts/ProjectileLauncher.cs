@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,8 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField] private string[] targetTags;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float range;
-
+    private int shotct = 0;
+    private int shotcool = 5;
     private Transform target;
 
     void Start()
@@ -59,6 +61,35 @@ public class ProjectileLauncher : MonoBehaviour
                 }
             }
         }
+        else if(shotct==4)
+        {
+            if(shotcool>0)
+            {
+                shotcool--;
+            }
+            else
+            {
+                shotct = 0;
+            }
+        }
+        else if (tower.type == 5)
+        {
+            // Find the nearest target object within infinite range
+            float closestDistance = Mathf.Infinity;
+            foreach (string tag in targetTags)
+            {
+                GameObject[] targets = GameObject.FindGameObjectsWithTag(tag);
+                foreach (GameObject t in targets)
+                {
+                    float distance = Vector3.Distance(transform.position, t.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        target = t.transform;
+                    }
+                }
+            }
+        }
         else
         {
             // Find the nearest target object within range
@@ -90,7 +121,13 @@ public class ProjectileLauncher : MonoBehaviour
             projectile.GetComponent<Projectile>().target = target;
             projectile.GetComponent<Projectile>().shotby = tower.type;
             projectile.GetComponent<Projectile>().shotbyobj = shotbyobj;
+            projectile.GetComponent<Projectile>().trackingSpeed = projectileSpeed;
             target = null;
+            if(tower.type==5)
+            {
+                shotct++;
+                shotcool++;
+            }
         }
     }
 }

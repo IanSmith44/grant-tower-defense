@@ -129,7 +129,7 @@ public class move : MonoBehaviour
         }
         else if (this.tag == "Glimp")
         {
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(0.5f);
                 recentSpawn = Instantiate(Pinkprefab, transform.position, Quaternion.identity);
@@ -139,6 +139,12 @@ public class move : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        else if (this.tag == "FighterGet")
+        {
+            healthMoney.money += 60;
+            Destroy(gameObject);
+        }
+
         else
         {
             Debug.Log("Enemy type not in move.cs die function");

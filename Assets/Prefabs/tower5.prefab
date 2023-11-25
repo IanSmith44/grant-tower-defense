@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7064370718317300057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 44, y: 44, z: 44}
+  m_LocalScale: {x: 48, y: 48, z: 48}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7302506903794002196}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.050980393}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 1505568969340215462}
   - component: {fileID: 5530886210949594894}
   m_Layer: 7
-  m_Name: tower4
+  m_Name: tower5
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 7302506903794002153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.0068674, y: -2.49, z: 0}
-  m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
+  m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7891889656613108565}
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 1cdfca63edfb16d4186eb8d92a2ede48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96c65035b33b3ba44bdaeb9aea1d9660, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -191,7 +191,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20, y: 20}
+    oldSize: {x: 4.53, y: 4.53}
     newSize: {x: 5.5, y: 5.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5530886210949594894}
   mouseover: 0
-  type: 4
+  type: 5
   circleSprite: {fileID: 5358091754056253340}
   placed: 0
 --- !u!114 &1505568969340215462
@@ -296,18 +296,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 1255690830621168511}
-  fireInterval: 1.25
-  projectilePrefab: {fileID: 5742014354644851909, guid: d1f3801d222a22a41a6fd64c099e5ac3, type: 3}
+  fireInterval: 0.25
+  projectilePrefab: {fileID: 5742014354644851909, guid: c8e0c1bf8fbec1b4a9900443bb0e6e17, type: 3}
   targetTags:
-  - Green
-  - Blue
-  - Red
-  - Yellow
-  - Orange
-  - Pink
+  - FighterGet
   - Glimp
-  projectileSpeed: 5
-  range: 9.55
+  projectileSpeed: 12
+  range: 1e+16
 --- !u!50 &5530886210949594894
 Rigidbody2D:
   serializedVersion: 4

@@ -21,7 +21,9 @@ public class enemySpawn : MonoBehaviour
     private string[] round12 = {"orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow", "orange", "yellow", "yellow"};
     private string[] round13 = {"pink", "pink", "pink", "pink", "pink", "pink"};
     private string[] round14 = {"glimp", "none", "none", "none", "glimp"};
-    private string[] round15 = {"glimp", "glimp", "glimp", "glimp", "glimp"};
+    private string[] round15 = {"glimp", "glimp", "glimp", "glimp", "glimp" };
+    private string[] round16 = {"fighterget", "none", "none", "none", "fighterget" };
+    private string[] round17 = {"fighterget", "fighterget", "fighterget", "fighterget", "fighterget" };
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;
@@ -36,6 +38,7 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private GameObject orange;
     [SerializeField] private GameObject pink;
     [SerializeField] private GameObject glimp;
+    [SerializeField] private GameObject fighterget;
     private GameObject recentEnemy;
     void Start()
     {
@@ -83,6 +86,10 @@ public class enemySpawn : MonoBehaviour
         else if(val == "glimp")
         {
             type = glimp;
+        }
+        else if(val == "fighterget")
+        {
+            type = fighterget;
         }
         else
         {
@@ -266,13 +273,38 @@ public class enemySpawn : MonoBehaviour
             }
             else if (roundManager.round == 15)
             {
-                if(spawnCount > round15.Length - 1)
+                if (spawnCount > round15.Length - 1)
                 {
                     spawning = false;
                     spawnCount = -1;
                 }
-                else{
+                else
+                {
                     Inst(round15[spawnCount]);
+                }
+            }
+            else if (roundManager.round == 16)
+            {
+                if (spawnCount > round16.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else
+                {
+                    Inst(round16[spawnCount]);
+                }
+            }
+            else if (roundManager.round == 17)
+            {
+                if (spawnCount > round17.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else
+                {
+                    Inst(round17[spawnCount]);
                 }
             }
         }

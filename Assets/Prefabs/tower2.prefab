@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 1255690830621168511}
-  fireInterval: 0.5
+  fireInterval: 0.35
   projectilePrefab: {fileID: 5742014354644851909, guid: c8e0c1bf8fbec1b4a9900443bb0e6e17, type: 3}
   targetTags:
   - Green
@@ -306,7 +306,7 @@ MonoBehaviour:
   - Orange
   - Pink
   - Glimp
-  projectileSpeed: 12
+  projectileSpeed: 6
   range: 10
 --- !u!50 &5530886210949594894
 Rigidbody2D:

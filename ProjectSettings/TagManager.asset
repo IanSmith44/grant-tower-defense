@@ -21,6 +21,7 @@ TagManager:
   - Glimp
   - Grojectile
   - Glujectile
+  - FighterGet
   layers:
   - Default
   - TransparentFX

@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73cf4b35e5ffb3449e197d1372f7316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTags: []
+  targetTags:
+  - FighterGet
   target: {fileID: 0}
   trackingSpeed: 5
   shotby: 0
