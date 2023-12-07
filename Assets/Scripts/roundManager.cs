@@ -45,7 +45,7 @@ public class roundManager : MonoBehaviour
         yellowEnemies = GameObject.FindGameObjectsWithTag("Yellow");
         glimps = GameObject.FindGameObjectsWithTag("Glimp");
         fightergets = GameObject.FindGameObjectsWithTag("FighterGet");
-        enemiesList = new GameObject[greenEnemies.Length + redEnemies.Length + blueEnemies.Length + orangeEnemies.Length + pinkEnemies.Length + yellowEnemies.Length + glimps.Length];
+        enemiesList = new GameObject[greenEnemies.Length + redEnemies.Length + blueEnemies.Length + orangeEnemies.Length + pinkEnemies.Length + yellowEnemies.Length + glimps.Length+ fightergets.Length];
         greenEnemies.CopyTo(enemiesList, 0);
 
         redEnemies.CopyTo(enemiesList, greenEnemies.Length);

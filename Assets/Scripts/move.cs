@@ -275,6 +275,10 @@ public class move : MonoBehaviour
             {
                 healthMoney.health -= 65;
             }
+            else if (this.tag == "FighterGet")
+            {
+                healthMoney.health -= 80;
+            }
             else
             {
                 Debug.Log("cannot remove health because enemy type is not recognized by move.cs");

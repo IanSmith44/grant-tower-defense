@@ -22,8 +22,9 @@ public class enemySpawn : MonoBehaviour
     private string[] round13 = {"pink", "pink", "pink", "pink", "pink", "pink"};
     private string[] round14 = {"glimp", "none", "none", "none", "glimp"};
     private string[] round15 = {"glimp", "glimp", "glimp", "glimp", "glimp" };
-    private string[] round16 = {"fighterget", "none", "none", "none", "fighterget" };
-    private string[] round17 = {"fighterget", "fighterget", "fighterget", "fighterget", "fighterget" };
+    private string[] round16 = {"fighterget", "none", "none", "none", "fighterget"};
+    private string[] round17 = { "fighterget", "fighterget", "fighterget", "fighterget", "fighterget"};
+    private string[] round18 = { "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget", "fighterget"};
     [SerializeField] private roundManager roundManager;
     private int spawnCount = -1;
     public bool spawning = false;
@@ -53,6 +54,10 @@ public class enemySpawn : MonoBehaviour
         else if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             spawnPosition = new Vector3(-12.09f, 1.126f, -0.138f);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            spawnPosition = new Vector3(-7.825f, 5.92f, -0.138f);
         }
         spawnCountdown = spawnTime - firstSpawnOffset;
     }
@@ -305,6 +310,18 @@ public class enemySpawn : MonoBehaviour
                 else
                 {
                     Inst(round17[spawnCount]);
+                }
+            }
+            else if (roundManager.round == 18)
+            {
+                if (spawnCount > round18.Length - 1)
+                {
+                    spawning = false;
+                    spawnCount = -1;
+                }
+                else
+                {
+                    Inst(round18[spawnCount]);
                 }
             }
         }
