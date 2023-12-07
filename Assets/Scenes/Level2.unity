@@ -14289,7 +14289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9042080337184046107, guid: de585ddd86103314089bccd10ec56657, type: 3}
       propertyPath: money
-      value: 1500
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 9042080337184046107, guid: de585ddd86103314089bccd10ec56657, type: 3}
       propertyPath: health
